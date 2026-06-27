@@ -118,33 +118,31 @@ export function CharacterProvider({ children }) {
 
     useLocalStorage(`ficha-${character.id}`, character);
 
-useEffect(() => {
-    console.log("Tentando salvar:", character.id);
+    useEffect(() => {
+        console.log("Tentando salvar:", character.id);
 
-    if (!character.id) {
-        console.log("ID inválido:", character.id);
-        return;
-    }
-
-    async function saveToCloud() {
-        try {
-            await setDoc(
-                doc(db, "characters", character.id),
-                character
-            );
-
-            console.log("Salvo:", character.id);
-
-        } catch (error) {
-            console.error(
-                "Erro ao salvar no Firebase:",
-                error
-            );
+        if (!character.id) {
+            console.log("ID inválido:", character.id);
+            return;
         }
-    }
 
-    saveToCloud();
-}, [character]);
+        const timeout = setTimeout(async () => {
+
+            try {
+                await setDoc(
+                    doc(db, "characters", character.id),
+                    character
+                );
+                console.log("Salvo:", character.id);
+            } catch (error) {
+                console.error(
+                    "Erro ao salvar no Firebase:",
+                    error
+                );
+            }
+        }, 500);
+        return () => clearTimeout(timeout);
+    }, [character]);
 
     useEffect(() => {
         if (!character.id) return;
