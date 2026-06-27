@@ -6,6 +6,33 @@ export default function AspectGroup({
     onUpdate
 }) {
 
+    const ordemAspectos = {
+        "Execução": [
+            "combater",
+            "precisao",
+            "defender",
+            "manobrar",
+            "movimentar",
+            "furtividade"
+        ],
+
+        "Razão": [
+            "investigar",
+            "conhecimento",
+            "convencer",
+            "aprender",
+            "mentir",
+            "criar"
+        ],
+
+        "Instinto": [
+            "perceber",
+            "resistir",
+            "intuir",
+            "esquivar"
+        ]
+    };
+
     // Valor do atributo selecionado
     const bonusAtributo =
         atributosPersonagem[
@@ -85,30 +112,26 @@ export default function AspectGroup({
             </div>
 
             {/* Aspectos */}
-            {Object.entries(
-                grupo.valores
-            ).map(([nome, valor]) => (
+            {ordemAspectos[titulo].map((nome) => (
+                <div key={nome} className="aspect-row">
 
-            <div key={nome} className="aspect-row">
+                    <label>
+                        {nome}
+                    </label>
 
-                <label>
-                    {nome}
-                </label>
-
-                <input
-                    className="aspect-input"
-                    type="number"
-                    min="0"
-                    value={valor}
-                    onChange={(e) =>
-                        onUpdate(
-                            nome,
-                            Number(
-                                e.target.value
+                    <input
+                        className="aspect-input"
+                        type="number"
+                        min="0"
+                        value={grupo.valores[nome]}
+                        onChange={(e) =>
+                            onUpdate(
+                                nome,
+                                Number(e.target.value)
                             )
-                        )
-                    }/>
-            </div>
+                        }
+                    />
+                </div>
             ))}
         </section>
     );
