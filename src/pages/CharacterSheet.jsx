@@ -55,7 +55,7 @@ export default function CharacterSheet() {
                     <h2> Especialidades </h2>
 
                     <div className="personal">
-                        <SpecialityPanel/>
+                        
                     </div>
 
                 </main>
@@ -66,3 +66,5 @@ export default function CharacterSheet() {
         </div>
     );
 }
+
+

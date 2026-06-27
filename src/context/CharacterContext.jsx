@@ -1,10 +1,15 @@
-import { createContext, useContext, useState } from "react";
+import { useEffect, createContext, useContext, useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { db } from "../firebase";
+import { doc, setDoc } from "firebase/firestore";
+import { onSnapshot } from "firebase/firestore";
+import { useParams } from "react-router-dom";
 
 const CharacterContext = createContext();
 
 const initialCharacter = {
     // Informações
+    id:"",
     nome: "",
     idade: "",
     cordosolhos: "",
@@ -88,31 +93,95 @@ const initialCharacter = {
 
 export function CharacterProvider({ children }) {
 
+    const { id } = useParams();
+
     const [character, setCharacter] =
         useState(() => {
 
             const saved =
-                localStorage.getItem("ficha");
+                localStorage.getItem(`ficha-${id}`);
 
-            return saved
-                ? JSON.parse(saved)
-                : initialCharacter;
+            if (saved) {
+                const parsed = JSON.parse(saved);
 
+                return {
+                    ...initialCharacter,
+                    ...parsed,
+                    id: id || parsed.id || crypto.randomUUID()
+                };
+            }
+            return {
+                ...initialCharacter,
+                id: id || crypto.randomUUID()
+            };
         });
 
-    useLocalStorage("ficha", character);
+    useLocalStorage(`ficha-${character.id}`, character);
 
-    function resetCharacter() 
-    {
+useEffect(() => {
+    console.log("Tentando salvar:", character.id);
+
+    if (!character.id) {
+        console.log("ID inválido:", character.id);
+        return;
+    }
+
+    async function saveToCloud() {
+        try {
+            await setDoc(
+                doc(db, "characters", character.id),
+                character
+            );
+
+            console.log("Salvo:", character.id);
+
+        } catch (error) {
+            console.error(
+                "Erro ao salvar no Firebase:",
+                error
+            );
+        }
+    }
+
+    saveToCloud();
+}, [character]);
+
+    useEffect(() => {
+        if (!character.id) return;
+        const unsubscribe = onSnapshot(
+            doc(db, "characters", character.id),
+            (snapshot) => {
+                if (snapshot.exists()) {
+                    const data = snapshot.data();
+                    setCharacter(current => {
+                        // evita renderizações infinitas
+                        if (
+                            JSON.stringify(current) ===
+                            JSON.stringify(data)
+                        ) {
+                            return current;
+                        }
+                        return data;
+                    });
+                }
+            }
+        );
+        return unsubscribe;
+    }, [character.id]);
+
+    function resetCharacter() {
         const confirmed = window.confirm(
             "Tem certeza que deseja apagar a ficha?"
         );
 
         if (!confirmed) return;
 
-        localStorage.removeItem("ficha");
+        localStorage.removeItem(`ficha-${character.id}`);
 
-        setCharacter(initialCharacter);
+        setCharacter({
+            ...initialCharacter,
+            id: character.id
+        });
     }
 
     return (
