@@ -7,16 +7,20 @@ import CondicoesPanel from "../components/UI/TextAreas/CondicoesPanel";
 import playerImage from "../assets/RaabePortrait.png";
 import AspectsPanel from "../components/Aspects/AspectsPanel"
 import SpecialityPanel from "../components/Especiality/SpecialityPanel";
+import { portraits } from "../components/UI/utils/portraits";
+import DefaultPortrait from "../assets/DefaultPortrait.png"
 
 export default function CharacterSheet() {
 
-    const { resetCharacter } = useCharacter();
+    const { character, resetCharacter } = useCharacter();
+
+    const portrait = portraits[character.id?.toLowerCase()] || DefaultPortrait;
 
     return (
         <div className="wrap">    
                 
                 <section className="panel">
-                    <div className="portrait" id="portrait" style={{ backgroundImage: `url(${playerImage})`}}></div>
+                    <div className="portrait" id="portrait" style={{ backgroundImage: `url(${portrait})`}}></div>
                     <div className="vitals">
                         <div className="vital">
                             <BarsPanel/>

@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import CharacterPage from "./pages/CharacterPages";
+import HudWrapper from "./pages/HudWrapper";
 
 function App() {
     return (
@@ -15,6 +16,11 @@ function App() {
             <Route
                 path="/ficha/:id"
                 element={<CharacterPage />}
+            />
+
+            <Route
+                path="/hud/:id"
+                element={<HudWrapper />}
             />
 
         </Routes>
