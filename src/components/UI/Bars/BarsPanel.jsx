@@ -8,10 +8,10 @@ export default function BarsPanel() {
     const ptTable = [10, 16, 22, 28, 34, 40, 46];
 
     const hpMax =
-        10 + (character.vitalidade * 3);
+        10 + (character.VIT * 3);
 
     const ptMax =
-        ptTable[character.essencia] || 10;
+        ptTable[character.ESS] || 10;
 
     function updateBar(bar, value) {
 
@@ -27,7 +27,7 @@ export default function BarsPanel() {
             <h2>Status</h2>
 
             <Bar
-                label="PV"
+                label="VIDA"
                 value={character.pv}
                 max={hpMax}
                 onChange={(value) =>

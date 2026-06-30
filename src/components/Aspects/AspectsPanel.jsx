@@ -45,7 +45,6 @@ export default function AspectsPanel() {
             // Se não houver pontos suficientes,
             // zera toda a distribuição
             if (pontosGastos > novoTotal) {
-
                 Object.keys(
                     novoGrupo.valores
                 ).forEach(aspecto => {
@@ -53,7 +52,6 @@ export default function AspectsPanel() {
                     novoGrupo.valores[aspecto] = 0;
 
                 });
-
             }
 
         }
@@ -111,8 +109,8 @@ export default function AspectsPanel() {
                 }
 
                 atributosDisponiveis={[
-                    "potencia",
-                    "astucia"
+                    "POT",
+                    "AST"
                 ]}
 
                 atributosPersonagem={character}
@@ -134,7 +132,7 @@ export default function AspectsPanel() {
                 }
 
                 atributosDisponiveis={[
-                    "mente"
+                    "MEN"
                 ]}
 
                 atributosPersonagem={character}
@@ -156,8 +154,8 @@ export default function AspectsPanel() {
                 }
 
                 atributosDisponiveis={[
-                    "essencia",
-                    "vitalidade"
+                    "ESS",
+                    "VIT"
                 ]}
 
                 atributosPersonagem={character}

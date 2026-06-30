@@ -1,8 +1,8 @@
 export default function SpecialityGroup({
     value,
-    bonus,
+    status,
     onValueChange,
-    onBonusChange
+    onStatusChange
 }) {
     return (
         <div className="speciality-group">

@@ -14,16 +14,18 @@ const initialCharacter = {
     idade: "",
     cordosolhos: "",
     nivel: "",
+    ocupacao: "",
+    origem: "",
 
     // Atributos
-    potencia: 0,
-    astucia: 0,
-    mente: 0,
-    essencia: 0,
-    vitalidade: 0,
+    POT: 0,
+    AST: 0,
+    MEN: 0,
+    ESS: 0,
+    VIT: 0,
 
     // Barras
-    pv: 10,
+    VIDA: 10,
     ps: 50,
     tensao: 0,
 
@@ -84,10 +86,10 @@ const initialCharacter = {
 
     //Especialidades
     especialidades: [
-        { nome: "", bonus: false },
-        { nome: "", bonus: false },
-        { nome: "", bonus: false },
-        { nome: "", bonus: false }
+        { nome: "", status: "" },
+        { nome: "", status: "" },
+        { nome: "", status: "" },
+        { nome: "", status: "" }
     ]
 };
 

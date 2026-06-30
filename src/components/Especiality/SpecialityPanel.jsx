@@ -26,7 +26,7 @@ export default function SpecialityPanel() {
             ...character,
             especialidades: [
                 ...character.especialidades,
-                { nome: "", bonus: false }
+                { nome: "", status: "" }
             ]
         });
     }
@@ -37,12 +37,12 @@ export default function SpecialityPanel() {
                 <SpecialityGroup
                     key={index}
                     value={speciality.nome}
-                    bonus={speciality.bonus}
+                    status={speciality.status}
                     onValueChange={(value) =>
                         updateSpeciality(index, "nome", value)
                     }
-                    onBonusChange={(value) =>
-                        updateSpeciality(index, "bonus", value)
+                    onStatusChange={(value) =>
+                        updateSpeciality(index, "status", value)
                     }
                 />
             ))}

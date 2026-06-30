@@ -18,50 +18,55 @@ export default function AttributesPanel() {
             <AttributeInput
                 className="attr"
                 data-attr="POT"
-                label="Potência - POT"
-                value={character.potencia}
+                label="// Potência //"
+                shortLabel="(POT)"
+                value={character.POT}
                 onChange={(value) =>
-                    updateAttribute("potencia", value)
+                    updateAttribute("POT", value)
                 }
             />
 
             <AttributeInput
                 className="attr"
                 data-attr="AST"
-                label="Astúcia - AST"
-                value={character.astucia}
+                label="¶ Astúcia ¶"
+                shortLabel="(AST)"
+                value={character.AST}
                 onChange={(value) =>
-                    updateAttribute("astucia", value)
+                    updateAttribute("AST", value)
                 }
             />
 
             <AttributeInput
                 className="attr"
                 data-attr="MEN"
-                label="Mente - MEN"
-                value={character.mente}
+                label="μ Mente μ"
+                shortLabel="(MEN)"
+                value={character.MEN}
                 onChange={(value) =>
-                    updateAttribute("mente", value)
+                    updateAttribute("MEN", value)
                 }
             />
 
             <AttributeInput
                 className="attr"
                 data-attr="ESS"
-                label="Essência - ESS"
-                value={character.essencia}
+                label="+ Essência +"
+                shortLabel="(ESS)"
+                value={character.ESS}
                 onChange={(value) =>
-                    updateAttribute("essencia", value)
+                    updateAttribute("ESS", value)
                 }
             />
 
             <AttributeInput
                 className="attr"
                 data-attr="VIT"
-                label="Vitalidade - VIT"
-                value={character.vitalidade}
+                label="‡ Vitalidade ‡"
+                shortLabel="(VIT)"
+                value={character.VIT}
                 onChange={(value) =>
-                    updateAttribute("vitalidade", value)
+                    updateAttribute("VIT", value)
                 }
             />
         </>

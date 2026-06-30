@@ -52,10 +52,6 @@ export default function AspectGroup({
                 0
             );
 
-    // Pontos restantes
-    const pontosRestantes =
-        totalPontos - pontosGastos;
-
     return (
         <section>
             <h3>
@@ -63,34 +59,28 @@ export default function AspectGroup({
                     <input
                         type="number"
                         min="0"
-                        value={grupo.pontosBase}
+                        value={grupo.pontosBase + bonusAtributo}
                         onChange={(e) =>
                             onUpdate(
                                 "pontosBase",
-                                Number(e.target.value)
+                                Number(e.target.value) - bonusAtributo
                             )
                         }
                         style={{ width: "50px" }}
-                    />
-
-                {bonusAtributo > 0 &&
-                    ` + ${bonusAtributo}`
-                }
-                = {totalPontos})
+                    />)
             </h3>
-
-            <p>
-                Restantes:
-                {pontosRestantes}
-            </p>
-
+            
             {/* Seleção do atributo */}
             <div>
-                <p>Afetado por:
-                {atributosDisponiveis.map(
-                    (atributo) => (
+                <p> Afetado por:
+                    {atributosDisponiveis.map((atributo) => (
                         <button
                             key={atributo}
+                            className={
+                                grupo.atributoSelecionado === atributo
+                                    ? "selected"
+                                    : ""
+                            }
                             onClick={() =>
                                 onUpdate(
                                     "atributoSelecionado",
@@ -98,16 +88,9 @@ export default function AspectGroup({
                                 )
                             }
                         >
-                            {grupo
-                                .atributoSelecionado ===
-                                atributo
-                                ? "✓ "
-                                : ""}
-
                             {atributo}
                         </button>
-                    )
-                )}
+                    ))}
                 </p>
             </div>
 

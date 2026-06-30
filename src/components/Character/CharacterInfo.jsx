@@ -48,6 +48,24 @@ export default function CharacterInfoPanel() {
                 }
             />
 
+            <input
+                placeholder="Ocupação"
+                id="ocupacaoField"
+                value={character.ocupacao}
+                onChange={(e) =>
+                    updateField("ocupacao", e.target.value)
+                }
+            />
+
+            <input
+                placeholder="Origem"
+                id="originField"
+                value={character.origem}
+                onChange={(e) =>
+                    updateField("origem", e.target.value)
+                }
+            />
+
         </>
     );
 }
