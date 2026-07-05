@@ -59,7 +59,7 @@ export default function CharacterSheet() {
 
                     <h2 className="title"> Especialidades </h2>
 
-                    <div className="personal">
+                    <div className="speciality-list">
                         <SpecialityPanel/>
                     </div>
 

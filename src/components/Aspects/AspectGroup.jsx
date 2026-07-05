@@ -52,6 +52,14 @@ export default function AspectGroup({
                 0
             );
 
+    // Pontos restantes
+    const pontosRestantes =
+        totalPontos - pontosGastos;
+
+    // Se existe algum ponto distribuído
+    const bloqueado =
+        pontosGastos > 0;
+
     return (
         <section>
             <h3>
@@ -59,13 +67,22 @@ export default function AspectGroup({
                     <input
                         type="number"
                         min="0"
-                        value={grupo.pontosBase + bonusAtributo}
+
+                        value={
+                            bloqueado
+                                ? pontosRestantes
+                                : totalPontos
+                        }
+
+                        disabled={bloqueado}
+
                         onChange={(e) =>
                             onUpdate(
                                 "pontosBase",
                                 Number(e.target.value) - bonusAtributo
                             )
                         }
+
                         style={{ width: "50px" }}
                     />)
             </h3>
@@ -92,6 +109,14 @@ export default function AspectGroup({
                         </button>
                     ))}
                 </p>
+
+                <div style={{ margin: "6px 0" }}>
+                    <button
+                        onClick={() => onUpdate("reset")}
+                    >
+                        ↺
+                    </button>
+                </div>
             </div>
 
             {/* Aspectos */}

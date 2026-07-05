@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import CharacterPage from "./pages/CharacterPages";
 import HudWrapper from "./pages/HudWrapper";
+import Home from "./pages/Home";
 
 function App() {
     return (
@@ -9,7 +10,7 @@ function App() {
             {/* Página principal */}
             <Route
                 path="/"
-                element={<CharacterPage />}
+                element={<Home />}
             />
 
             {/* Fichas individuais */}

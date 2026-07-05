@@ -18,6 +18,24 @@ export default function AspectsPanel() {
             }
         };
 
+        // Resetar distribuição
+        if (campo === "reset") {
+
+            Object.keys(novoGrupo.valores).forEach((aspecto) => {
+                novoGrupo.valores[aspecto] = 0;
+            });
+
+            setCharacter({
+                ...character,
+                aspectos: {
+                    ...character.aspectos,
+                    [grupoNome]: novoGrupo
+                }
+            });
+
+            return;
+        }
+
         // Atualização dos pontos base
         if (campo === "pontosBase") {
 

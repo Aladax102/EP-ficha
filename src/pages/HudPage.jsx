@@ -19,11 +19,11 @@ export default function HudPage() {
                 </div>
 
                 <div className="hud-stat">
-                    PS: {character.ps}
+                    Tensão: {character.tensao}
                 </div>
 
                 <div className="hud-stat">
-                    Tensão: {character.tensao}
+                    PS: {character.ps}
                 </div>
 
             </div>

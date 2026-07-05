@@ -1,0 +1,99 @@
+.background-image{
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 110%;
+    height: 110%;
+
+    object-fit: cover;
+
+    transform: translate(-50%, -50%) scale(.9);
+    filter: brightness(0.3);
+
+    z-index: 0;
+}
+
+.home {
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.vhs-overlay{
+    position:absolute;
+    inset:0;
+
+    width:110%;
+    height:110%;
+
+    object-fit:cover;
+
+    pointer-events:none;
+
+    mix-blend-mode:screen;
+
+    opacity:.25;
+    filter: opacity(0.12);
+}
+
+.radial-menu {
+    position: relative;
+
+    width: 700px;
+    height: 700px;
+}
+
+.radial-svg {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+.character-icon {
+    position: absolute;
+
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-decoration: none;
+}
+
+.character-icon img {
+    width: 90px;
+    height: 90px;
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    border: 2px solid rgba(255,255,255,.2);
+
+    transition: .25s ease;
+}
+
+.character-icon img:hover {
+    transform: scale(1.08);
+    border-color: white;
+}
+
+.character-icon span {
+    margin-top: 8px;
+
+    color: white;
+
+    font-family: "Cinzel Decorative", serif;
+    font-size: 14px;
+
+    text-align: center;
+}

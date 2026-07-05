@@ -28,10 +28,10 @@ export default function BarsPanel() {
 
             <Bar
                 label="VIDA"
-                value={character.pv}
+                value={character.vida}
                 max={hpMax}
                 onChange={(value) =>
-                    updateBar("pv", value)
+                    updateBar("vida", value)
                 }
             />
 

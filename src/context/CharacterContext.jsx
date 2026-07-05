@@ -14,6 +14,7 @@ const initialCharacter = {
     idade: "",
     cordosolhos: "",
     nivel: "",
+    ultimoNivelCalculado: [],
     ocupacao: "",
     origem: "",
 
@@ -25,7 +26,9 @@ const initialCharacter = {
     VIT: 0,
 
     // Barras
-    VIDA: 10,
+    vida: 10,
+    vidaMax: 10,
+
     ps: 50,
     tensao: 0,
 
@@ -86,10 +89,10 @@ const initialCharacter = {
 
     //Especialidades
     especialidades: [
-        { nome: "", status: "" },
-        { nome: "", status: "" },
-        { nome: "", status: "" },
-        { nome: "", status: "" }
+        { nome: "", nivel: 2 },
+        { nome: "", nivel: 2 },
+        { nome: "", nivel: 2 },
+        { nome: "", nivel: 2 }
     ]
 };
 
@@ -109,12 +112,12 @@ export function CharacterProvider({ children }) {
                 return {
                     ...initialCharacter,
                     ...parsed,
-                    id: id || parsed.id || crypto.randomUUID()
+                    id: id || parsed.id || ""
                 };
             }
             return {
                 ...initialCharacter,
-                id: id || crypto.randomUUID()
+                id: id || ""
             };
         });
 
