@@ -14,7 +14,6 @@ const initialCharacter = {
     idade: "",
     cordosolhos: "",
     nivel: "",
-    ultimoNivelCalculado: [],
     ocupacao: "",
     origem: "",
 
@@ -28,6 +27,8 @@ const initialCharacter = {
     // Barras
     vida: 10,
     vidaMax: 10,
+    tensaoMax: 10,
+    psMax: 50,
 
     ps: 50,
     tensao: 0,
@@ -186,6 +187,7 @@ export function CharacterProvider({ children }) {
             id: character.id
         });
     }
+    
 
     return (
 

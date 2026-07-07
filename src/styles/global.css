@@ -88,7 +88,20 @@
     .bar-vida .bar-fill {background: linear-gradient(to right,#2a0000, #8b0000, #dbb300);}
     .bar-ps .bar-fill {background: linear-gradient(to right,#1f2c35, #4b6576, #7893a5);}
     .bar-tensão .bar-fill {background: linear-gradient(to right,#bf1f2f,#8a0715, #2b0005);}
-    .bar-label .bar-input {width: 10px !important; text-align: center;}
+    .bar-label {width: 10px !important; text-align: center;}
+
+    .bar-values {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .bar-input {
+        width: 45px;
+        padding: 2px 4px;
+        text-align: center;
+        flex: none;
+    }
 
     .bar-label{right:10px;top:6px;font-family:VT323,monospace;font-size:13px;color:var(--muted)}
 

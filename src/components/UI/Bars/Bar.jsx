@@ -2,41 +2,53 @@ export default function Bar({
     label,
     value,
     max,
-    onChange
+    onChange,
+    onMaxChange
 }) {
-
-    const percentage = max > 0
-        ? (value / max) * 100
-        : 0;
+    const percentage =
+        max > 0
+            ? (value / max) * 100
+            : 0;
 
     return (
         <div className="bar-container">
-
-            <p>
-                {label}: {
-                    <input className="bar-input"
+            <p className="bar-values">
+                {label}
+                <input
+                    className="bar-input"
                     type="number"
                     min="0"
-                    max={max}
                     value={value}
                     onChange={(e) =>
-                        onChange(Number(e.target.value))}/>
-                }/{max}
+                        onChange(Number(e.target.value))
+                    }
+                />
+
+                /
+
+                <input
+                    className="bar-input"
+                    type="number"
+                    min="0"
+                    value={max}
+                    onChange={(e) =>
+                        onMaxChange(
+                            Number(e.target.value)
+                        )
+                    }
+                />
             </p>
 
-
-
-            <div className={`bar-wrap bar-${label.toLowerCase()}`}>
-
+            <div
+                className={`bar-wrap bar-${label.toLowerCase()}`}
+            >
                 <div
                     className="bar-fill"
                     style={{
                         width: `${percentage}%`
                     }}
                 />
-
             </div>
-
         </div>
     );
 }

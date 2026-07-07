@@ -2,19 +2,9 @@ import { useCharacter } from "../../../context/CharacterContext";
 import Bar from "./Bar";
 
 export default function BarsPanel() {
-
     const { character, setCharacter } = useCharacter();
 
-    const ptTable = [10, 16, 22, 28, 34, 40, 46];
-
-    const hpMax =
-        10 + (character.VIT * 3);
-
-    const ptMax =
-        ptTable[character.ESS] || 10;
-
     function updateBar(bar, value) {
-
         setCharacter({
             ...character,
             [bar]: value
@@ -23,36 +13,43 @@ export default function BarsPanel() {
 
     return (
         <>
-
             <h2>Status</h2>
 
             <Bar
                 label="VIDA"
                 value={character.vida}
-                max={hpMax}
+                max={character.vidaMax}
                 onChange={(value) =>
                     updateBar("vida", value)
+                }
+                onMaxChange={(value) =>
+                    updateBar("vidaMax", value)
                 }
             />
 
             <Bar
                 label="TENSÃO"
                 value={character.tensao}
-                max={ptMax}
+                max={character.tensaoMax}
                 onChange={(value) =>
                     updateBar("tensao", value)
+                }
+                onMaxChange={(value) =>
+                    updateBar("tensaoMax", value)
                 }
             />
 
             <Bar
                 label="PS"
                 value={character.ps}
-                max={50}
+                max={character.psMax}
                 onChange={(value) =>
                     updateBar("ps", value)
                 }
+                onMaxChange={(value) =>
+                    updateBar("psMax", value)
+                }
             />
-
         </>
     );
 }
