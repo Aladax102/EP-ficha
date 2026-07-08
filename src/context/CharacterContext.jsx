@@ -99,6 +99,7 @@ const initialCharacter = {
 export function CharacterProvider({ children }) {
 
     const { id } = useParams();
+    const [loaded, setLoaded] = useState(false);
 
     const [character, setCharacter] =
         useState({
@@ -107,51 +108,57 @@ export function CharacterProvider({ children }) {
         });
 
     useEffect(() => {
-        console.log("Tentando salvar:", character.id);
-
-        if (!character.id) {
-            console.log("ID inválido:", character.id);
-            return;
-        }
+        if (!loaded) return;
+        if (!character.id) return;
 
         const timeout = setTimeout(async () => {
-
             try {
                 await setDoc(
                     doc(db, "characters", character.id),
                     character
                 );
-                console.log("Salvo:", character.id);
+
+                console.log(
+                    "Salvo:",
+                    character.id,
+                    character
+                );
             } catch (error) {
                 console.error(
-                    "Erro ao salvar no Firebase:",
+                    "Erro ao salvar:",
                     error
                 );
             }
         }, 500);
+
         return () => clearTimeout(timeout);
-    }, [character]);
+    }, [character, loaded]);
 
     useEffect(() => {
         if (!character.id) return;
+
         const unsubscribe = onSnapshot(
             doc(db, "characters", character.id),
             (snapshot) => {
                 if (snapshot.exists()) {
                     const data = snapshot.data();
+
                     setCharacter(current => {
-                        // evita renderizações infinitas
                         if (
                             JSON.stringify(current) ===
                             JSON.stringify(data)
                         ) {
                             return current;
                         }
+
                         return data;
                     });
                 }
+
+                setLoaded(true);
             }
         );
+
         return unsubscribe;
     }, [character.id]);
 
@@ -161,8 +168,6 @@ export function CharacterProvider({ children }) {
         );
 
         if (!confirmed) return;
-
-        localStorage.removeItem(`ficha-${character.id}`);
 
         setCharacter({
             ...initialCharacter,
