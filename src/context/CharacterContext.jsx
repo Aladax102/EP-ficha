@@ -1,5 +1,4 @@
 import { useEffect, createContext, useContext, useState } from "react";
-import useLocalStorage from "../hooks/useLocalStorage";
 import { db } from "../firebase";
 import { doc, setDoc } from "firebase/firestore";
 import { onSnapshot } from "firebase/firestore";
@@ -102,27 +101,10 @@ export function CharacterProvider({ children }) {
     const { id } = useParams();
 
     const [character, setCharacter] =
-        useState(() => {
-
-            const saved =
-                localStorage.getItem(`ficha-${id}`);
-
-            if (saved) {
-                const parsed = JSON.parse(saved);
-
-                return {
-                    ...initialCharacter,
-                    ...parsed,
-                    id: id || parsed.id || ""
-                };
-            }
-            return {
-                ...initialCharacter,
-                id: id || ""
-            };
+        useState({
+            ...initialCharacter,
+            id: id || ""
         });
-
-    useLocalStorage(`ficha-${character.id}`, character);
 
     useEffect(() => {
         console.log("Tentando salvar:", character.id);

@@ -18,6 +18,7 @@ export default function Bar({
                     className="bar-input"
                     type="number"
                     min="0"
+                    max={max}
                     value={value}
                     onChange={(e) =>
                         onChange(Number(e.target.value))
