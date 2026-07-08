@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAuth, signInAnonymously } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAHUzlaB_nSgmSta5WfFxupabKgoCfuCAs",
@@ -12,5 +13,13 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-// Banco de dados
 export const db = getFirestore(app);
+export const auth = getAuth(app);
+
+signInAnonymously(auth)
+  .then(() => {
+    console.log("Login anônimo realizado.");
+  })
+  .catch((error) => {
+    console.error("Erro no login anônimo:", error);
+  });
